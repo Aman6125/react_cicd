@@ -10,44 +10,31 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - name: "Setup Node JS"
-        uses: actions/setup-node@v4
-        with:
-            node-version: '21'
+      - name: "Checkout code"
+        uses: actions/checkout@v3
 
-      - name: "Check node version"
+      - name: "Setup Node.js"
+        uses: actions/setup-node@v3
+        with:
+          node-version: '21'
+
+      - name: "Check Node version"
         run: node --version
 
-      - name: "Clone the repo"
-        uses: actions/checkout@v2
-
-      - name: "List down directories"
-        run: ls
-
-
-      - name: Install dependencies
+      - name: "Install dependencies"
         run: npm install
-
-      - name: "List down directories"
-        run: ls
 
       - name: "Run lint"
         run: npm run lint
 
-      - name: "run test"
+      - name: "Run tests"
         run: npm test
 
-      - name: "Run build"
+      - name: "Build project"
         run: npm run build
 
       - name: "Upload production-ready build files"
-        uses: actions/upload-artifact@
+        uses: actions/upload-artifact@v3
         with:
-            name: build
-            path: /dist
-
-
-
-
-
-      
+          name: build
+          path: build
