@@ -31,6 +31,12 @@ jobs:
       - name: "List down directories"
         run: ls
 
+      - name: "run test"
+        run: npm test
+
+      - name: "Run build"
+        run: npm run build
+
 
 
 
